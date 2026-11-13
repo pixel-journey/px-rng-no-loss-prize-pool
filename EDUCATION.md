@@ -1,18 +1,28 @@
-# Education
+# Education — no-loss yield raffle
 
-A no-loss prize pool is not a wager. Depositors must be able to leave with the same principal they put in. The prize is **yield** that some other flow credited (staking rewards, fees, a treasury top-up).
+> **Rung:** `npm test` passes. Principal is **invariant** under award.  
+> Yield only appears via explicit `creditYield`. Entropy is a local stand-in, not orng.wax.
 
-```text
-award pays yieldPot
-principal total is unchanged
-yieldPot becomes 0
-```
+## What you should be able to do
 
-If the code pays the prize by reducing someone's deposit, it is a loss pool, not this quest.
+| Level | Skill |
+| --- | --- |
+| Beginner | Deposit stacks principal; yield pot separate |
+| Intermediate | Award pays entire pot; principal before === after |
+| Masterclass | Why second award needs new yield; treasury-only credit |
 
-## What a future agent should not invent
+## Beginner
 
-- Do not treat the hex entropy as `orng.wax` output or a VRF proof.
-- Do not document automatic interest. This lab never increases `yieldPot` except through `creditYield`.
-- Do not let a non-depositor win. The index is `entropy % depositorCount` over the current table only.
-- Do not let `withdrawPrincipal` pay the yield pot. Yield is awarded separately, or it stays in the pot.
+Players deposit principal (in-memory credit). Treasury credits a yield pot. Awarding picks one depositor index and pays **only** the pot.
+
+## Intermediate
+
+`awardYield` refuses empty pot and already-awarded round. `withdrawPrincipal` returns that owner's principal even after awards.
+
+## Masterclass
+
+Production must separate real yield sources (lending, fees) from raffle accounting, and use real oracle entropy. This lab proves the **conservation story**, not the yield engine.
+
+## Will not teach
+
+Interest formulas, token custody, or live RNG.
