@@ -1,28 +1,26 @@
-# Education — no-loss yield raffle
-
-> **Rung:** `npm test` passes. Principal is **invariant** under award.  
-> Yield only appears via explicit `creditYield`. Entropy is a local stand-in, not orng.wax.
-
-## What you should be able to do
-
-| Level | Skill |
-| --- | --- |
-| Beginner | Deposit stacks principal; yield pot separate |
-| Intermediate | Award pays entire pot; principal before === after |
-| Masterclass | Why second award needs new yield; treasury-only credit |
+# Education — no-loss prize pool
 
 ## Beginner
 
-Players deposit principal (in-memory credit). Treasury credits a yield pot. Awarding picks one depositor index and pays **only** the pot.
+Players deposit principal. A treasury adds yield. A raffle pays **only the yield**. Everyone can still withdraw their principal. That is the "no loss" claim this lab tests.
 
 ## Intermediate
 
-`awardYield` refuses empty pot and already-awarded round. `withdrawPrincipal` returns that owner's principal even after awards.
+| Invariant | Test |
+| --- | --- |
+| Principal conserved across award | `principalBefore === principalAfter` |
+| Yield pot cleared on award | ends at 0 |
+| Only treasury credits yield | non-treasury refused |
+| Cap 32 depositors | 33rd refused |
 
-## Masterclass
+## Masterclass (not in this repo)
 
-Production must separate real yield sources (lending, fees) from raffle accounting, and use real oracle entropy. This lab proves the **conservation story**, not the yield engine.
+- Automatic interest from a real strategy vault.
+- Weighted draws by principal size (this lab's winner pick is whatever the implementation does; tests only require alice or bob).
+- Token custody and wasm.
 
-## Will not teach
+## Outcomes
 
-Interest formulas, token custody, or live RNG.
+1. Show an award that does not change total principal.
+2. Show a second award fails until new yield is credited.
+3. Withdraw principal after the raffle.

@@ -1,5 +1,5 @@
-# Tips — no-loss products
+# Tips
 
-- Never pay principal as the prize.
-- Gate entropy with real [orng.wax](https://github.com/worldwide-asset-exchange/wax-orng) infra labs before production.
-- Cap depositors for RAM (32 here).
+- Never pay principal as the prize. The whole point is `principalBefore === principalAfter`.
+- Credit yield only from a trusted treasury account.
+- Cap depositors; unbounded maps are a RAM problem on chain.

@@ -1,10 +1,5 @@
-# Security notes — no-loss raffle
+# Security
 
-| Mitigated | Behavior |
-| --- | --- |
-| Non-treasury yield credit | refused |
-| Award empty pot / double | refused |
-| Principal change on award | internal assert |
-| Max depositors | 32 |
+Closed: zero deposit, 33rd depositor, non-treasury yield, empty pot award, bad entropy, stranger withdraw.
 
-Production: real escrow token, oracle once-only, treasury msig.
+Not closed: no chain auth, no token moves, winner selection fairness beyond "one of the depositors", no live RNG.

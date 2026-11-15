@@ -1,21 +1,36 @@
-# Worked examples — no-loss pool
+# Worked examples — no-loss yield raffle
 
-## Example A — deposit
+Principal stays escrowed. Only the yield pot is awarded. Entropy is 64 hex (`ab` × 32).
 
-Two owners deposit; totalPrincipal grows; yieldPot stays 0.
+## Deposit
 
-## Example B — credit yield
+```text
+deposit alice 1000, bob 500, alice +25
+→ totalPrincipal 1525, yieldPot 0, alice principal 1025
+```
 
-Only treasury caller may `creditYield`.
+Zero deposit refused. 33rd distinct depositor refused (`MAX_DEPOSITORS` 32).
 
-## Example C — award
+## Yield credit
 
-`awardYield` pays full pot to one owner; principalBefore === principalAfter; pot 0; round increments.
+Only caller `treasury` with trusted minter `treasury` may `creditYield`. Alice calling throws `/treasury/`. Principal unchanged when yield is credited (`100` principal, `40` yield).
 
-## Example D — refuse double award
+## Award
 
-Second award same round without new yield → refused.
+Alice 1000 + Bob 1000, yield 250:
 
-## Example E — withdraw after award
+| Field | Value |
+| --- | --- |
+| paid | 250 |
+| principalBefore | 2000 |
+| principalAfter | 2000 |
+| yieldPot after | 0 |
+| winner | alice or bob |
 
-Owner still withdraws full principal; not reduced by loss.
+Empty pot → `no yield`. Second award before new credit → `no yield`. Bad entropy `zz` → `/hex/`. Yield with no depositors → `no depositors`.
+
+## Withdraw
+
+After an award, alice withdraws `800` and leaves bob's `200`. Stranger bob on alice-only pool → `no principal`.
+
+No `orng.wax` job. Entropy is an argument for winner selection among depositors.
