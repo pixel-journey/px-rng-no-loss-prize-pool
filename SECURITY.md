@@ -1,5 +1,23 @@
-# Security
+# Security — no-loss prize pool
 
-Closed: zero deposit, 33rd depositor, non-treasury yield, empty pot award, bad entropy, stranger withdraw.
+## Closed in tests
 
-Not closed: no chain auth, no token moves, winner selection fairness beyond "one of the depositors", no live RNG.
+| Issue | Behavior |
+| --- | --- |
+| Non-treasury creditYield | throws |
+| Award empties yield only | principal unchanged |
+| Second award without yield | refused |
+| 33rd depositor | refused |
+| Zero deposit | refused |
+| Stranger withdraw | refused |
+
+## Not closed
+
+| Concern | Guidance |
+| --- | --- |
+| Auth | Real `require_auth` on deposit/withdraw/treasury |
+| Entropy integrity | Oracle-delivered randomness; once-resolve |
+| Custody | Token notify in; transfer out on withdraw |
+| Solvency of yield | Treasury must actually fund the pot |
+
+No wasm or live transfers in this repository.

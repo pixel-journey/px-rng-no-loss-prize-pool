@@ -1,31 +1,14 @@
-# No-loss yield raffle: principal stays, yield pays out
+# No-loss yield raffle (principal invariant)
 
-> **Domain:** RNG-backed yield raffle  
-> **Sources:** [SOURCES.md](SOURCES.md)  
-> **Path:** [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)
-
-**Goal:** Principal stays escrowed; **only** an explicitly credited yield pot is paid to one depositor. Winner index is a deterministic hex stand-in — not orng.wax.
-
-**Code under test:** `npm test`. No token transfers, no live yield accrual.
-
-## Learning materials
+Educational pool: deposit principal, treasury credits yield, random award pays **only** the yield pot. Principal stays withdrawable.
 
 | Doc | Role |
 | --- | --- |
 | [EDUCATION.md](EDUCATION.md) | Beginner → masterclass |
-| [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) | Deposit, credit, award, withdraw |
-| [TIPS.md](TIPS.md) | Principal never is the prize |
-| [SECURITY.md](SECURITY.md) | Treasury + conservation |
-| [SOURCES.md](SOURCES.md) | Official |
-
-## What is true (executed)
-
-| Rule | Result |
-|------|--------|
-| deposit | stacks principal; pot unchanged |
-| creditYield | treasury only |
-| awardYield | pot → winner; principal invariant |
-| withdrawPrincipal | owner principal after award |
+| [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) | Tables |
+| [TIPS.md](TIPS.md) | Invariant tips |
+| [SECURITY.md](SECURITY.md) | Gaps |
+| [SOURCES.md](SOURCES.md) | Links |
 
 ```bash
 npm test
