@@ -33,10 +33,31 @@ Only account `treasury` may `creditYield`. Alice calling credit throws. After cr
 
 **Invariant to tattoo on the design:** awards never reduce principal.
 
+### Common mistakes
+
+1. Paying the prize from principal "temporarily."  
+2. Letting any user call `creditYield`.  
+3. Locking principal until the raffle ends when the product said withdraw anytime.  
+4. Confusing this with [FT vault shares](https://github.com/pixel-journey/px-stake-ft-single-sided-vault) (reprice) or [elimination](https://github.com/pixel-journey/px-rng-russian-roulette-elimination) (buy-in at risk).
+
+### Nice-to-have extensions (not in this repo)
+
+| Idea | Note |
+| --- | --- |
+| Weighted tickets by deposit size | New draw math; still no principal touch |
+| Streaming yield from a fee splitter | [fee splitter](https://github.com/pixel-journey/px-treasury-incoming-fee-splitter) |
+| Once-resolve winner via orng | [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) |
+
 Numbers: [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md).
+
+### Exercises
+
+1. After award, does principal change? (No.)  
+2. Who may creditYield? (treasury only)  
+3. Is this a share-price vault? (No.)
 
 ### What this is not
 
 - Live ORNG delivery (entropy is an argument in tests)
 - Interest rate model (yield appears via treasury credit)
-- A share vault ([FT vault](https://github.com/pixel-journey/px-stake-ft-single-sided-vault) is different math)
+- A share vault
