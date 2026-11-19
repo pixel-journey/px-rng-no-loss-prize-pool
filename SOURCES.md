@@ -7,7 +7,15 @@
 | [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng) | Random winner selection on WAX |
 | [RNG tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample) | Sample dapp path |
 
-**Product promise:** awards never reduce principal. Yield is funded by a trusted treasury credit, not by depositors.
+## Product facts locked by tests
+
+- Awards never reduce **principal**. `principalBefore === principalAfter` on every award path.
+- Yield is funded only by a **trusted treasury** `creditYield` — not by depositors.
+- After award, `yieldPot` is **0**. Second award without new yield is refused.
+- Users may withdraw principal independently of raffles.
+- MAX_DEPOSITORS **32** is a teaching RAM cap.
+- This is **not** [elimination](https://github.com/pixel-journey/px-rng-russian-roulette-elimination). There buy-ins form the pot and principal is at risk.
+- This is **not** [FT vault](https://github.com/pixel-journey/px-stake-ft-single-sided-vault). Vault shares reprice; this lab keeps principal fixed and raffles only yield.
 
 ## Related labs
 
