@@ -30,4 +30,4 @@ Principal stays escrowed. Only the **yield pot** is awarded. That is the product
 | Streaming yield from a fee splitter | [fee splitter](https://github.com/pixel-journey/px-treasury-incoming-fee-splitter) |
 | Once-resolve winner via orng | [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) |
 
-Related: [token ledger](https://github.com/pixel-journey/px-token-balance-ledger) · [FT vault](https://github.com/pixel-journey/px-stake-ft-single-sided-vault) · [ORNG path](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)
+Related: [token ledger](https://github.com/pixel-journey/px-token-balance-ledger) · [FT vault](https://github.com/pixel-journey/px-stake-ft-single-sided-vault) · `px-contract-examples-vault` (private index; not this public course)
